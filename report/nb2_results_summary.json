@@ -1,0 +1,6 @@
+{
+  "selected_model": "LightGBM_global",
+  "test_rows": 34872,
+  "overall_mae_mw": 271.05128638783486,
+  "persistence_mae_mw": 335.2991798577655
+}

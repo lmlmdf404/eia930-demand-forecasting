@@ -1,0 +1,4 @@
+Comparison,MAE_Difference_MW_Median,CI95_Low,CI95_High,Test_Days,Interpretation
+LightGBM_global minus Persistence,-64.28,-79.91,-49.01,185,model better (CI below 0)
+LightGBM_global minus WeeklyNaive,-332.67,-383.12,-286.71,185,model better (CI below 0)
+LightGBM_global minus EIA_day_ahead,-99.09,-115.01,-84.2,185,model better (CI below 0)

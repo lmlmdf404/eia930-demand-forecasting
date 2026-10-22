@@ -1,0 +1,9 @@
+BA_Name,BA_Code,Number_of_Matched_Hours,CO2_Generated_Min,CO2_Generated_Max,Percent_Zero_CO2_Generated,Corr_Demand_CO2_Generated,Corr_Demand_CO2_Consumed,Corr_After_Removing_Hour_Profile
+Arizona Public Service Company,AZPS,26300,0.247,1.977,0.0,-0.03,0.238,0.069
+Bonneville Power Administration,BPAT,26211,0.008,0.179,0.0,-0.072,-0.037,-0.013
+California Independent System Operator,CISO,26203,0.015,0.822,0.0,0.207,0.189,0.305
+Los Angeles Department of Water and Power,LDWP,25460,0.121,1.878,0.0,-0.168,-0.184,0.111
+Nevada Power Company,NEVP,26302,0.197,1.063,0.0,-0.0,-0.024,0.22
+PacifiCorp West,PACW,26304,0.008,1.981,0.0,0.037,-0.02,0.066
+Portland General Electric Company,PGE,26304,0.008,0.86,0.0,0.292,0.093,0.384
+Salt River Project,SRP,26187,0.1,0.819,0.0,0.444,0.385,0.547

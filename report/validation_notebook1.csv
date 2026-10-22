@@ -1,0 +1,28 @@
+Validation_Check,Status,Evidence,Remaining_Issue
+BA count (secondary source),PASS,"8 BAs in secondary file: ['AZPS', 'BPAT', 'CISO', 'LDWP', 'NEVP', 'PACW', 'PGE', 'SRP']",
+BA list equals EXPECTED_8BA,PASS,"data: ['AZPS', 'BPAT', 'CISO', 'LDWP', 'NEVP', 'PACW', 'PGE', 'SRP'] | expected: ['AZPS', 'BPAT', 'CISO', 'LDWP', 'NEVP', 'PACW', 'PGE', 'SRP']","Nếu chủ động đổi phạm vi, hãy sửa EXPECTED_8BA và BA_META cùng lúc."
+All eight BAs present in primary source,PASS,primary file holds 63 BAs; missing from primary: [],
+SQL 1 covers exactly eight BAs,PASS,"8 rows: ['AZPS', 'BPAT', 'CISO', 'LDWP', 'NEVP', 'PACW', 'PGE', 'SRP']",
+Primary and secondary demand agree on comparable hours (tolerance 1 MW),PASS,"max MAE = 0.000 MW, min correlation = 1.00000, 210,281 comparable rows","Nếu không nhất quán, cần chọn nguồn authoritative một cách rõ ràng."
+Exactly eight BAs in analysis dataset,PASS,8 BAs in grid,
+Timestamps ordered and unique within BA,PASS,"monotonic=True, duplicate keys after cleaning=0",
+Regular hourly grid,PASS,"26,305 hourly steps per BA, all eight BAs",
+Time coverage documented,PASS,2022-01-01 08:00:00 to 2025-01-01 08:00:00 (UTC end-of-hour); test target period starts 2024-07-01,Longest gap: 49 h; missing share per BA: 0.004-0.452 %
+SQL 2 returns eight BAs,PASS,"8 rows: ['CISO', 'BPAT', 'NEVP', 'SRP', 'AZPS', 'LDWP', 'PGE', 'PACW']",
+SQL 2 mean demand equals pandas summary,PASS,max |SQL - pandas| mean demand = 0.050 MW,
+SQL 2 peak and low months equal pandas (full months only),PASS,peak/low month of the seasonal profile agree between SQL 2 and pandas,
+SQL 3 covers eight BAs,PASS,"3a: 8 BAs, 3b: 8 BAs",
+SQL 3a correlation equals pandas,PASS,max |SQL - pandas| = 0.0003,
+SQL 4 covers eight BAs,PASS,8 rows,
+SQL 4 lag-24 MAE equals pandas shift on the complete grid,PASS,max |SQL - pandas| = 0.037 MW,
+Eight BAs have eligible modeling rows in train and test,PASS,"eligible rows per BA: train 20,864-21,687, test 4,091-4,425",
+"Target y_h24 = demand at t+24h (timestamp merge, all BAs)",PASS,"210,002 rows compared across 8 BAs; mismatches = 0",
+"Lag features y_lag{k} = demand at t-k (timestamp merge, all BAs)",PASS,"mismatches by lag: {1: 0, 2: 0, 3: 0, 24: 0, 48: 0, 144: 0, 168: 0}",
+Features reproducible from history up to t only (400 random eligible rows),PASS,0 irreproducible rows out of 400,
+LEAD() used only for target and EIA comparator,PASS,"2 LEAD expressions: LEAD(demand, 24) OVER w AS y_h24,          -- | LEAD(eia_fc, 24) OVER w AS eia_fc_target     ",
+Train targets precede test targets (boundary on target time),PASS,last train target 2024-06-30 23:00:00 < first test target 2024-07-01 00:00:00 (TEST_START 2024-07-01),Features of early test rows use history before TEST_START; this is allowed (available at issue time). Training rows never use test targets.
+Statistics for extreme thresholds from training period only,PASS,SQL 3 and section 9 estimate quantiles on ts_utc < TEST_START,Notebook 2 recomputes thresholds from training TARGETS (target_time < TEST_START).
+"Handoff table: exactly eight BAs, unique keys, regular hourly steps",PASS,"8 BAs, duplicate keys = 0, hourly spacing ok = True",
+Handoff artifact written with checksum,PASS,data/processed/feat_8ba.parquet; md5 bef1e94a6584026d965228435e89d27c,
+Manifest holds exactly eight BAs,PASS,"['AZPS', 'BPAT', 'CISO', 'LDWP', 'NEVP', 'PACW', 'PGE', 'SRP']",
+Forecast horizon and test boundary preserved,PASS,"horizons=[24], test_start=2024-07-01",

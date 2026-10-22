@@ -1,0 +1,6 @@
+Step,Rows_Before,Rows_After,Rows_Changed,Note
+rows read for eight BAs (before de-duplication),210432,210432,0,starting point
+"collapse duplicate (BA, timestamp) keys",210432,210432,0,0 duplicated keys; 0 with conflicting values (mean used)
+non-positive demand set to missing,210432,210432,6,physical impossibility; 151 values were already missing/non-numeric
+implausible demand set to missing (train-median screen),210432,210432,87,< 0.3x or > 3.0x per-BA training median; rows listed in report/flagged_implausible_demand.csv
+complete hourly grid (missing hours kept as missing),210432,210440,8,rows added for hours absent from the source; demand stays NaN

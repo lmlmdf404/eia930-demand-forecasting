@@ -1,0 +1,21 @@
+Validation_Check,Status,Evidence,Remaining_Issue
+Feature file matches manifest checksum,PASS,md5 bef1e94a... == manifest bef1e94a...,Chạy lại Notebook 1 nếu lỗi; không sửa file bằng tay.
+Exactly eight BAs in the manifest,PASS,"['AZPS', 'BPAT', 'CISO', 'LDWP', 'NEVP', 'PACW', 'PGE', 'SRP']",
+Feature table contains exactly the manifest BAs,PASS,"BAs in table: ['AZPS', 'BPAT', 'CISO', 'LDWP', 'NEVP', 'PACW', 'PGE', 'SRP']",
+Horizon and test start as in the original project,PASS,"HORIZONS=[24], TEST_START=2024-07-01",
+All declared feature columns exist,PASS,missing: [],
+Feature columns are the manifest's primary features,PASS,F_ORIG subset of manifest.primary_features,
+Train/validation/test are time-ordered and disjoint by target time,PASS,"fit < 2024-04-01 <= validation < 2024-07-01 <= test; last train target 2024-06-30 23:00:00, first test target 2024-07-01 00:00:00",
+Target = demand at t+24h re-verified on loaded data,PASS,"210,002 rows, all eight BAs",
+All eight BAs have eligible test rows,PASS,"eligible test rows per BA: 4,091-4,425",Dòng không đủ điều kiện là origin có 168 giờ lịch sử hoặc target chứa giờ thiếu.
+y_lag24 is demand 24 h before the issue hour (48 h before the target),PASS,"209,998 rows verified by timestamp merge; hence for h=24 the same-hour-previous-day forecast is `demand` (persistence), not y_lag24",
+Persistence has MASE = 1 on the training rows (scale sanity check),PASS,MASE of persistence on train = 1.000 by definition,
+All models and baselines scored on identical test rows,PASS,"34,872 test rows; no missing predictions for ['Ridge', 'RandomForest', 'LightGBM_global', 'Persistence', 'WeeklyNaive']",
+No model fitting on validation or test targets (final fits),PASS,final models fitted on targets < 2024-07-01; selection models on targets < 2024-04-01; scalers live inside sklearn Pipelines fitted on those rows only,
+Per-BA table has exactly eight BAs,PASS,"['AZPS', 'BPAT', 'CISO', 'LDWP', 'NEVP', 'PACW', 'PGE', 'SRP']",
+LOBO holds out each of the eight BAs once,PASS,"held-out BAs: ['AZPS', 'BPAT', 'CISO', 'LDWP', 'NEVP', 'PACW', 'PGE', 'SRP']",
+Metric computation agrees with scikit-learn,PASS,MAE from score() == sklearn mean_absolute_error,
+Extreme thresholds from training targets only,PASS,quantiles computed on `train` (target_time_utc < TEST_START),
+Per-BA evaluation covers all eight BAs,PASS,"['AZPS', 'BPAT', 'CISO', 'LDWP', 'NEVP', 'PACW', 'PGE', 'SRP']",
+Models evaluated on identical rows,PASS,"34,872 rows",
+Conformal calibration uses validation only (no test targets),PASS,calibration targets end 2024-06-30 23:00:00 < test start 2024-07-01 00:00:00,

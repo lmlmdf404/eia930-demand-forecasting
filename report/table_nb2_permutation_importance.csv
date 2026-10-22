@@ -1,0 +1,16 @@
+Feature,MAE_Increase_MW,Std,Meaning
+demand,1787.73,20.05,demand at issue hour t (MW)
+y_ma_season,1785.72,40.54,"mean demand, 24 h ending at t"
+y_lag1,460.88,7.11,demand at t-1 h
+y_lag48,254.51,6.46,demand at t-48 h
+y_lag168,231.75,4.6,demand at t-168 h
+y_lag24,92.3,1.68,demand at t-24 h
+dow,85.74,2.09,day of week of t (Mon=0)
+hr,49.45,6.42,UTC hour of t
+doy,34.28,3.25,day of year of t
+y_sd_season,21.92,0.84,"std of demand, 24 h ending at t"
+y_diff1,14.09,0.33,demand(t) - demand(t-1)
+unit_code,10.58,0.61,BA identifier
+y_lag2,7.36,0.75,demand at t-2 h
+y_lag3,6.16,0.84,demand at t-3 h
+mon,2.73,1.42,month of t

@@ -1,0 +1,16 @@
+Feature,Mean_Abs_SHAP_MW,Share
+y_ma_season,2662.61,0.48
+demand,1278.81,0.23
+y_lag48,432.21,0.08
+y_lag1,414.35,0.08
+y_lag168,270.66,0.05
+dow,135.52,0.02
+y_lag24,88.08,0.02
+doy,67.83,0.01
+y_sd_season,55.27,0.01
+hr,49.85,0.01
+y_diff1,38.33,0.01
+unit_code,16.24,0.0
+y_lag2,15.95,0.0
+mon,10.86,0.0
+y_lag3,7.75,0.0

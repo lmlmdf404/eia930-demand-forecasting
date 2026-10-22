@@ -1,0 +1,9 @@
+BA_Name,BA_Code,Number_of_Valid_Hours,Matched_Hours_Lag24,Corr_Lag24,MAE_Lag24_MW,Mean_Abs_Change_Percent_Lag24,Matched_Hours_Lag168,Corr_Lag168,MAE_Lag168_MW,Mean_Abs_Change_Percent_Lag168
+Arizona Public Service Company,AZPS,26301,26274,0.968,191.6,4.91,26130,0.903,368.0,9.24
+Bonneville Power Administration,BPAT,26304,26280,0.935,265.8,3.96,26136,0.78,474.4,6.86
+California Independent System Operator,CISO,26251,26198,0.928,1261.8,5.09,26031,0.834,1794.8,6.77
+Los Angeles Department of Water and Power,LDWP,26186,26069,0.909,172.5,6.22,25900,0.739,276.7,9.63
+Nevada Power Company,NEVP,26303,26278,0.975,182.5,3.88,26134,0.888,386.1,7.94
+PacifiCorp West,PACW,26304,26280,0.923,122.2,5.02,26136,0.802,198.5,7.96
+Portland General Electric Company,PGE,26304,26280,0.902,132.1,5.06,26136,0.76,201.9,7.6
+Salt River Project,SRP,26235,26142,0.974,194.7,4.86,25998,0.92,359.3,8.86

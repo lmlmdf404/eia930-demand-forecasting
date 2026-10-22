@@ -1,0 +1,9 @@
+,BA_Name,Test_Rows,MAE_MW_LightGBM_global,MAE_MW_Persistence,RMSE_MW_LightGBM_global,nMAE_%_LightGBM_global,MASE_LightGBM_global,MASE_Persistence,Model_Beats_Persistence,MAE_MW_EIA_day_ahead,Model_Beats_EIA
+AZPS,Arizona Public Service Company,4424,200.264,203.932,286.223,4.371,1.057,1.076,True,180.778,False
+BPAT,Bonneville Power Administration,4425,192.377,238.105,261.576,2.891,0.71,0.879,True,121.514,False
+CISO,California Independent System Operator,4233,1014.678,1406.222,1444.978,3.627,0.819,1.135,True,1824.012,True
+LDWP,Los Angeles Department of Water and Power,4091,180.213,203.73,260.589,6.592,1.075,1.216,True,255.061,True
+NEVP,Nevada Power Company,4425,189.438,193.847,274.936,3.742,1.049,1.073,True,353.721,True
+PACW,PacifiCorp West,4425,91.791,118.829,125.107,3.724,0.747,0.967,True,95.901,True
+PGE,Portland General Electric Company,4425,112.102,134.834,164.482,4.23,0.852,1.025,True,31.426,False
+SRP,Salt River Project,4424,212.162,219.376,305.766,4.716,1.122,1.16,True,155.113,False

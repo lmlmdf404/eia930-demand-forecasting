@@ -1,0 +1,162 @@
+{
+  "group": "Group 9",
+  "stage": "notebook1_handoff",
+  "handoff_file": "data/processed/feat_8ba.parquet",
+  "handoff_format": "parquet",
+  "md5": "bef1e94a6584026d965228435e89d27c",
+  "ba_list": [
+    "AZPS",
+    "BPAT",
+    "CISO",
+    "LDWP",
+    "NEVP",
+    "PACW",
+    "PGE",
+    "SRP"
+  ],
+  "n_ba": 8,
+  "ba_names": {
+    "AZPS": "Arizona Public Service Company",
+    "BPAT": "Bonneville Power Administration",
+    "CISO": "California Independent System Operator",
+    "LDWP": "Los Angeles Department of Water and Power",
+    "NEVP": "Nevada Power Company",
+    "PACW": "PacifiCorp West",
+    "PGE": "Portland General Electric Company",
+    "SRP": "Salt River Project"
+  },
+  "ba_timezones": {
+    "AZPS": "America/Phoenix",
+    "BPAT": "America/Los_Angeles",
+    "CISO": "America/Los_Angeles",
+    "LDWP": "America/Los_Angeles",
+    "NEVP": "America/Los_Angeles",
+    "PACW": "America/Los_Angeles",
+    "PGE": "America/Los_Angeles",
+    "SRP": "America/Phoenix"
+  },
+  "unit_col": "ba",
+  "time_col": "ts_utc",
+  "target_col": "demand",
+  "freq": "h",
+  "season": 24,
+  "horizons": [
+    24
+  ],
+  "test_start": "2024-07-01",
+  "event_quantile": 0.9,
+  "extreme_quantiles": [
+    0.9
+  ],
+  "grid_start_utc": "2022-01-01 08:00:00",
+  "grid_end_utc": "2025-01-01 08:00:00",
+  "n_rows": 210440,
+  "n_eligible_rows": 206971,
+  "time_convention": "UTC end-of-hour timestamps; demand in MW (hourly average); local time used only for derived calendar features",
+  "protocol": {
+    "issue_time": "end of hour t (UTC)",
+    "target": "demand at t+24h",
+    "targets_per_origin": 1,
+    "split": "train = target_time < TEST_START; test = target_time >= TEST_START (no overlap of train targets with the test period)"
+  },
+  "primary_features": [
+    "demand",
+    "y_lag1",
+    "y_lag2",
+    "y_lag3",
+    "y_lag24",
+    "y_lag48",
+    "y_lag144",
+    "y_lag168",
+    "y_ma_season",
+    "y_sd_season",
+    "y_diff1",
+    "hr",
+    "dow",
+    "mon",
+    "doy",
+    "tgt_hr_local",
+    "tgt_dow_local",
+    "tgt_is_weekend_local",
+    "tgt_mon_local"
+  ],
+  "secondary_features": [
+    "co2_intensity_generated",
+    "co2_intensity_consumed",
+    "co2_intensity_generated_lag_season",
+    "co2_intensity_consumed_lag_season"
+  ],
+  "target_columns": [
+    "y_h24"
+  ],
+  "comparator_columns": [
+    "eia_fc_target"
+  ],
+  "columns": {
+    "ba": "BA code (one of the eight)",
+    "ts_utc": "forecast ISSUE hour, UTC, end-of-hour timestamp",
+    "target_time_utc": "ts_utc + 24 h; the hour being forecast",
+    "split_by_target_time": "'train' if target_time_utc < TEST_START else 'test'",
+    "eligible": "all PRIMARY_FEATURES and the target are non-missing (full history, no gap)",
+    "demand": "demand at the issue hour t, MW (also feature 'y_lag0')",
+    "y_h24": "TARGET: demand at t+24 h, MW",
+    "eia_fc": "EIA day-ahead forecast for hour t, MW",
+    "eia_fc_target": "EIA day-ahead forecast for hour t+24, MW (comparator only)",
+    "y_lag{k}": "demand at t-k hours, MW (k in [1, 2, 3, 24, 48, 144, 168])",
+    "y_ma_season / y_sd_season": "mean / std of demand over the 24 hours ending at t (MW)",
+    "y_diff1": "demand(t) - demand(t-1), MW",
+    "hr, dow, mon, doy": "UTC hour, day of week (Mon=0), month, day of year of hour t",
+    "tgt_hr_local, tgt_dow_local, tgt_is_weekend_local, tgt_mon_local": "local wall-clock calendar of the target hour (known at issue time)",
+    "co2_*": "CO2 intensity from the secondary file (units as in source); secondary, not a primary predictor"
+  },
+  "dtypes": {
+    "ba": "object",
+    "ts_utc": "datetime64[ns]",
+    "target_time_utc": "datetime64[ns]",
+    "split_by_target_time": "object",
+    "eligible": "bool",
+    "demand": "float64",
+    "y_lag1": "float64",
+    "y_lag2": "float64",
+    "y_lag3": "float64",
+    "y_lag24": "float64",
+    "y_lag48": "float64",
+    "y_lag144": "float64",
+    "y_lag168": "float64",
+    "y_ma_season": "float64",
+    "y_sd_season": "float64",
+    "y_diff1": "float64",
+    "hr": "int64",
+    "dow": "int64",
+    "mon": "int64",
+    "doy": "int64",
+    "tgt_hr_local": "int32",
+    "tgt_dow_local": "int32",
+    "tgt_is_weekend_local": "int64",
+    "tgt_mon_local": "int32",
+    "y_h24": "float64",
+    "eia_fc": "float64",
+    "eia_fc_target": "float64",
+    "co2_intensity_generated": "float64",
+    "co2_intensity_consumed": "float64",
+    "co2_intensity_generated_lag_season": "float64",
+    "co2_intensity_consumed_lag_season": "float64"
+  },
+  "cleaning": {
+    "quantile_clipping": "removed (original clipped at per-BA 0.1/99.9 % over the whole period)",
+    "interpolation": "none; gaps remain missing",
+    "implausible_rule": "demand < 0.3x or > 3.0x per-BA TRAIN median set to missing"
+  },
+  "extreme_thresholds_train_mw": {
+    "0.9": {
+      "AZPS": 5417.0,
+      "BPAT": 7985.2,
+      "CISO": 30571.0,
+      "LDWP": 3439.6,
+      "NEVP": 6115.3,
+      "PACW": 2996.0,
+      "PGE": 3087.0,
+      "SRP": 5594.0
+    }
+  }
+}
